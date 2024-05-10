@@ -1,14 +1,8 @@
 <?php
+require_once "../vendor/autoload.php";
 
-$path = "/index";
-if (isset($_SERVER['PATH_INFO'])) {
-    $path = $_SERVER['PATH_INFO'];
-}
+use PhpMvc\App\Router;
 
-$dir = __DIR__ . '/../app/view' . $path . '.php';
-if (!file_exists( $dir )) {
-    echo "not found";
-    return;
-}
+Router::add('GET', '/', 'HomeController', 'index');
 
-require $dir;
+Router::run();
