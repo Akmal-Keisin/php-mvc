@@ -1,0 +1,12 @@
+{
+    "name": "akmal/php-mvc",
+    "authors": [
+        {
+            "name": "Akmal-Keisin",
+            "email": "akmalkeisin@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    }
+}
