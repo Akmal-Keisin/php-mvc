@@ -1,5 +1,15 @@
 {
     "name": "akmal/php-mvc",
+    "autoload": {
+        "psr-4": {
+            "PhpMvc\\App\\": "app/" 
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpMvc\\Test\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Akmal-Keisin",
