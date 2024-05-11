@@ -23,6 +23,19 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         foreach (self::$routes as $route) {
+            
+            if (preg_match_all('#\{(.*?)\}#', $route['path'], $routePatternMatch)) {
+                $routePath = preg_replace('#\{(.*?)\}#', '([a-zA-Z0-9])', $route['path']);
+                $routePath = '#' . $routePath . '$#';
+
+                if (preg_match_all($routePath, $path, $pathMatch)) {                    
+                    $controller = new $route['controller'];
+                    $function = $route['function'];
+                    call_user_func_array([$controller, $function], $pathMatch[1]);
+                    return;
+                }
+            }
+            
             if ($route['path'] === $path && $route['method'] === $method) {                
                 $controller = new $route['controller'];
                 $function = $route['function'];
