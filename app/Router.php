@@ -23,18 +23,11 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         foreach (self::$routes as $route) {
-            if ($route['path'] === $path && $route['method'] === $method) {
-                $controllerPath = __DIR__ . '\\controller\\' . $route['controller'] . '.php';
-
-                if (file_exists($controllerPath)) {
-                    $controller = "PhpMvc\\App\\Controller\\" . $route['controller'];                    
-                    $controller = new $controller;
-                    
-                    if (method_exists($controller, $route['function'])) {
-                        $controller->{$route['function']}();
-                        return;
-                    }
-                }
+            if ($route['path'] === $path && $route['method'] === $method) {                
+                $controller = new $route['controller'];
+                $function = $route['function'];
+                $controller->$function();
+                return;
             }
         }
 

@@ -6,6 +6,6 @@ class HomeController
 {
     public function index()
     {
-        echo "test";
+        require_once __DIR__ . "/../view/index.php";
     }
 }
